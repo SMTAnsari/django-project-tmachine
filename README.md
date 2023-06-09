@@ -1,2 +1,2 @@
 # django-project-tmachine
-hello world
+hello mahi
