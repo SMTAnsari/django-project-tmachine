@@ -15,16 +15,25 @@
   <body>
     <div class="login_form_container">
       <div class="login_form">
+        <form action="login" method="POST">
         <h2>Login</h2>
+        {% block messages %}
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+                </ul>
+            {% endif %}
         <div class="input_group">
           <i class="fa fa-user"></i>
+          {% csrf_token %}
           <input
             type="email"
             class="input_text"
 			placeholder="Email"
-      name="email"
+      name="username"
           >
-		  
         </div>
         <div class="input_group">
           <i class="fa fa-unlock-alt"></i>
@@ -36,11 +45,12 @@
           >
         </div>
         <div class="button_group" id="login_button">
-          <a>Submit</a>
+          <input type="submit" >
         </div>
         <div class="fotter">
           <a>Forgot Password ?</a>
           <a href="register" style="color: #00ccff;">SignUp</a>
+        </form>
         </div>
       </div>
     </div>
@@ -60,5 +70,6 @@
       });
 
       </script>
+       {% endblock %}
   </body>
 </html>
