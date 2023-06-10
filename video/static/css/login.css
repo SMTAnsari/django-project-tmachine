@@ -86,8 +86,11 @@ h2{
     border-bottom: 1px solid #00ccff;
     font-size: 20px;
     padding-left: 10px;
-    color: #00ccff;
+    
 
+}
+::placeholder{
+    color: #00ccff;
 }
 
 .login_form span::before{
@@ -129,25 +132,33 @@ h2{
     height: 40px;
     transition: 1s;
     margin-top: 70px;
-
-
 }
-#login_button a{
-    position: absolute;
-    width: 100%;
+
+.button_group{
+    text-align-last: center;
+}
+
+#btn{
+    width: 40%;
     height: 100%;
     text-decoration: none;
     z-index: 10;
     cursor: pointer;
     font-size: 22px;
+    color: #6fc2ff;
     letter-spacing: 2px;
     border: 1px solid #00ccff;
     border-radius: 50px;
     background-color: #0c1022;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
+
+#btn:hover, #btn:focus{
+    background-color: #3f688054;
+    color: #ffffff;
+}
+
 .fotter {
     margin-top: 30px;
     display: flex;
