@@ -372,9 +372,9 @@ button svg {
 		</h1>
 		 <!--<a href="#" class="btn btn-white btn-animated">Get Start Here</a>-->
         <div class="sparkle-button" style="text-align: -webkit-center;">
-    
-            <button>
-                <a href="login"></a>
+			<form method="GET" action="{% url 'login' %}">
+				{% csrf_token %}
+            <button type='submit'>
               <span class="spark"></span>
               <!-- <span class="spark"></span> -->
               <span class="backdrop"></span>
@@ -440,6 +440,7 @@ button svg {
               </svg>
             </span>
           </div>
+		</form>
           
 	</div>
 </header>

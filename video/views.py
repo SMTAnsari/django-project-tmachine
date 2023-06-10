@@ -28,6 +28,8 @@ def register(request):
             messages.error(request, 'Passwords do not match')
             return redirect('register')
     
+
+    
     return render(request, 'register.html')
 
 def login(request):
@@ -47,8 +49,14 @@ def login(request):
         else:
             messages.error(request, 'Invalid credentials')
             return render(request, 'login.html')
+    elif request.method == 'GET':
+        return render(request, 'login.html')
+
     else:
         return render(request, 'login.html')
 
 def index(request):
     return render(request,"index.html")
+
+def home(request):
+    return render(request,"home.html")
