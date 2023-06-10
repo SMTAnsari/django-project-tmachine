@@ -16,21 +16,33 @@
     <div class="login_form_container">
       <div class="login_form">
         <h2>Register Now</h2>
+        {% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="register" method="POST">
+      {% csrf_token %}
         <div class="input_group">
           <i class="fa fa-user-circle"></i>
           <input
             type="text"
             class="input_text"
 			placeholder="Name"
+      name="name"
           >
         </div>
 
         <div class="input_group">
           <i class="fa fa-envelope"></i>
           <input
-            type="text"
+            type="email"
             class="input_text"
 			placeholder="Email id"
+      name="email"
           >
         </div>
 
@@ -40,6 +52,7 @@
             type="password"
             class="input_text"
 			placeholder="Password"
+      name="password"
           >
         </div>
 
@@ -49,14 +62,16 @@
             type="password"
             class="input_text"
 			placeholder="Confirm Password"
+      name="password1"
           >
         </div>
 
         <div class="button_group" id="login_button">
-          <a>Submit</a>
+          <a href="Home"><input type="submit" ></a>
         </div>
         <div class="fotter" style="justify-content: right;">
           <a href="login" style="color: #00ccff; padding-right: 30px;">Login</a>
+        </form>
         </div>
       </div>
     </div>
@@ -76,5 +91,6 @@
       });
 
       </script>
+       {% endblock %}
   </body>
 </html>
