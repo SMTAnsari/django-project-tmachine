@@ -125,13 +125,20 @@ h2{
 }
 
 
+#login_button{
+    position: relative;
+    width: 300px;
+    height: 40px;
+    transition: 1s;
+    margin-top: 70px;
+}
 
 .button_group{
     text-align-last: center;
 }
 
-.btn{
-    width: 40% !important;
+#btn{
+    width: 40%;
     height: 100%;
     text-decoration: none;
     z-index: 10;
@@ -146,7 +153,7 @@ h2{
     align-items: center;
 }
 
-.btn:hover, #btn:focus{
+#btn:hover, #btn:focus{
     background-color: #3f688054;
     color: #ffffff;
 }
@@ -154,30 +161,6 @@ h2{
 
 
 
-#login_button{
-  position: relative;
-    width: 20px;
-    height: 40px;
-    transition: 1s;
-    margin-top: 70px;
-
-}
-#login_button a{
-    position: absolute;
-    width: 40% !important;
-    height: 100%;
-    text-decoration: none;
-    z-index: 10;
-    cursor: pointer;
-    font-size: 22px;
-    letter-spacing: 2px;
-    border: 1px solid #00ccff;
-    border-radius: 50px;
-    background-color: #0c1022;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .fotter {
     margin-top: 30px;
     display: flex;
