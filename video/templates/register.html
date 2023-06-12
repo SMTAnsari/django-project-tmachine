@@ -11,6 +11,7 @@
     />
     {% load static %}
     <link href="{% static 'css/register.css' %}" rel="stylesheet">
+
   </head>
   <body>
     <div class="login_form_container">
@@ -33,6 +34,7 @@
             class="input_text"
 			placeholder="Name"
       name="name"
+      required
           >
         </div>
 
@@ -43,6 +45,7 @@
             class="input_text"
 			placeholder="Email id"
       name="email"
+      required
           >
         </div>
 
@@ -53,6 +56,7 @@
             class="input_text"
 			placeholder="Password"
       name="password"
+      required
           >
         </div>
 
@@ -61,13 +65,15 @@
           <input
             type="password"
             class="input_text"
+            
 			placeholder="Confirm Password"
       name="password1"
+      required
           >
         </div>
-
-        <div class="button_group" id="login_button">
-          <a href="Home"><input type="submit" ></a>
+     
+     <div class="button_group" id="login_button">
+          <a href="Home"><input type="submit" class = 'btn' ></a>
         </div>
         <div class="fotter" style="justify-content: right;">
           <a href="login" style="color: #00ccff; padding-right: 30px;">Login</a>
