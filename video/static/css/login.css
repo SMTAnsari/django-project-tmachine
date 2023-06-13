@@ -90,6 +90,15 @@ h2{
     
 
 }
+
+input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: -internal-light-dark(transparent, transparent) !important;
+    color: fieldtext !important;
+}
+
+
 ::placeholder{
     color: #00ccff;
 }
