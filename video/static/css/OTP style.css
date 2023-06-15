@@ -38,3 +38,37 @@ body {
   font-size: 20px;
   color: white;
 }
+
+#login_button{
+  position: relative;
+  width: 300px;
+  height: 40px;
+  transition: 1s;
+  margin-top: 70px;
+}
+
+.button_group{
+  text-align-last: center;
+}
+
+#btn{
+  width: 50%;
+  height: 150%;
+  text-decoration: none;
+  z-index: 10;
+  cursor: pointer;
+  font-size: 22px;
+  color: #6fc2ff;
+  letter-spacing: 2px;
+  border: 1px solid #00ccff;
+  border-radius: 50px;
+  background-color: #0c1022;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn:hover, #btn:focus{
+  background-color: #3f688054;
+  color: #ffffff;
+}
+

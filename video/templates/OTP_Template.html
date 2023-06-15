@@ -26,11 +26,12 @@
     text-align: center;">We’ve sent a 6-character code to {{ email }}. The code expires shortly, so please enter it soon.</h3>
 
     <form
-      method="get"
+      method="GET"
       class="digit-group"
       data-group-name="digits"
       data-autosubmit="false"
       autocomplete="off"
+      style="text-align: -webkit-center;"
     >
       <input type="text" id="digit-1" name="digit-1" data-next="digit-2" />
       <span class="splitter">&ndash;</span>
@@ -51,6 +52,9 @@
       />
       <span class="splitter">&ndash;</span>
       <input type="text" id="digit-4" name="digit-4" data-previous="digit-3" />
+      <div class="button_group" id="login_button">
+        <a href="Home"><input type="submit" id = 'btn' ></a>
+      </div>
     </form>
     <!-- partial -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
