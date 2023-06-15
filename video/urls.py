@@ -9,5 +9,5 @@ urlpatterns = [
     path('login', views.login, name="login"),
     path('otp', views.OTP, name="otp"),
     path('email', views.email, name="email"),
-    path('email_get', views.email_get, name="email_get"),
+    path('forget', views.forget, name="forget"),
 ]

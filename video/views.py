@@ -95,5 +95,5 @@ def OTP(request):
 def email(request):
     return render(request,"email.html")
 
-def email_get(request):
-    return render(request,"email_get.html")
+def forget(request):
+    return render(request,"forget password.html")
