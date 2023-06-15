@@ -87,3 +87,13 @@ def index(request):
 
 def home(request):
     return render(request,"home.html")
+
+def OTP(request):
+    return render(request,"OTP_Template.html")
+
+
+def email(request):
+    return render(request,"email.html")
+
+def email_get(request):
+    return render(request,"email_get.html")
