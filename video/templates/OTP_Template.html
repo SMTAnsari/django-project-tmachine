@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <title>CodePen - OTP Input</title>
-    <link rel="stylesheet" href="../static/css/OTP style.css" />
+    {% load static %}
+    <link href="{% static 'css/OTP style.css' %}" rel="stylesheet">
   </head>
   <body>
     <div class="brand-box">
 		<span class="brand">
-            <img src="../static/logo-1920-×-733-px.png" style="width: 220px; height: 84px;">
-        </span>
+      {% load static %}
+      <img src="{% static 'image/logo-1920-733-px.png' %}" alt="Logo" style="width: 220px; height: 84px;">
+      
+    </span>
 	</div>
 	
 
@@ -23,16 +26,17 @@
     line-height: 25px;
     margin-bottom: 32px;
     max-width: 710px;
-    text-align: center;">We’ve sent a 6-character code to {{ email }}. The code expires shortly, so please enter it soon.</h3>
+    text-align: center;">We’ve sent a 6-character code to {{email}}. The code expires shortly, so please enter it soon.</h3>
 
     <form
-      method="GET"
+      method="POST"
       class="digit-group"
       data-group-name="digits"
       data-autosubmit="false"
       autocomplete="off"
       style="text-align: -webkit-center;"
     >
+    {% csrf_token %}
       <input type="text" id="digit-1" name="digit-1" data-next="digit-2" />
       <span class="splitter">&ndash;</span>
       <input
@@ -58,6 +62,6 @@
     </form>
     <!-- partial -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../static/js/OTP script.js"></script>
+    <script src="{% static 'js/OTP script.js' %}"></script>
   </body>
 </html>

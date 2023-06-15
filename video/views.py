@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -43,8 +43,8 @@ def register(request):
                 # email.send()
 
                 print('Registration successful')
-                
-                return redirect('otp')
+                return redirect('otp', email=email)
+                # return redirect(otp(email))
         else:
             messages.error(request, 'Passwords do not match')
             return redirect('register')
@@ -111,16 +111,33 @@ def home(request):
 
 def otp(request,email):
     print(email)
-    if request.method == 'GET':
-        a=request.POST.GET['digit-1']
-        b=request.GET['digit-2']
-        c=request.GET['digit-3']
-        d=request.GET['digit-4']
-        e=int(str(a)+str(b)+str(c)+str(d))
-        if Feature.objects.filter(e=otp).exists():
-            pass
+    context = {
+        'email': email,
+    }
+    if request.method == 'POST':
+        a=request.POST['digit-1']
+        b=request.POST['digit-2']
+        c=request.POST['digit-3']
+        d=request.POST['digit-4']
+        otp=int(str(a)+str(b)+str(c)+str(d))
+        try:
+            user = Feature.objects.get(email=email)
+        except Feature.DoesNotExist:
+            messages.error(request, 'Invalid email')
+            return redirect('register')  # Redirect to the registration page or any other appropriate page
+        
+        # Check if the OTP matches
+        if user.otp == otp:
+            # OTP is valid, do something
+            messages.success(request, 'OTP is valid')
+            return redirect('/Home')  # Redirect to a success page or any other appropriate page
+        else:
+            # OTP is invalid
+            messages.error(request, 'Invalid OTP')
+            return redirect('otp', email=email)  # Redirect back to the OTP page with the email pre-filled
+    
 
-    return render(request,"OTP_Template.html")
+    return render(request, "OTP_Template.html", context)
 
 def forgot(request):
     if request.method == 'POST':
@@ -134,7 +151,7 @@ def forgot(request):
         #         mail_sent(subject,message,from_email,recipient_email,True)
         #         return redirect('OTP_Template')
 
-    return render(request,"forgot email template.html")
+    return render(request,"forgot email template.html", {"email":email})
 
 def reset(request):
     return render(request,"reset_password.html")

@@ -360,7 +360,8 @@ button svg {
 <header class="header">
 	<div class="brand-box">
 		<span class="brand">
-            <img src="../static/logo-1920-×-733-px.png" style="width: 220; height: 84;">
+			{% load static %}
+            <img src="{% static 'image/logo-1920-733-px.png' %}" alt="Logo" style="width: 220px; height: 84px;">
         </span>
 	</div>
 	
