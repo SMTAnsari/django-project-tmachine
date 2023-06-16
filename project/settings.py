@@ -144,3 +144,8 @@ EMAIL_HOST_PASSWORD = 'ldjknvliqkgvmznc'  # Replace with your Gmail password or 
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 APPEND_SLASH = False
+
+
+
+
+

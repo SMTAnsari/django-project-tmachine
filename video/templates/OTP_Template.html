@@ -5,6 +5,15 @@
     <title>CodePen - OTP Input</title>
     {% load static %}
     <link href="{% static 'css/OTP style.css' %}" rel="stylesheet">
+    <script>
+      if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, null, window.location.href);
+          window.onpopstate = function () {
+              window.history.replaceState(null, null, window.location.href);
+              window.location.replace("/");
+          };
+      }
+  </script>
   </head>
   <body>
     <div class="brand-box">

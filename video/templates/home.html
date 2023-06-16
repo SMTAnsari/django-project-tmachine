@@ -356,6 +356,15 @@ button svg {
 	font-size: 14px;
 }
 </style>
+<script>
+	if (window.history && window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
+		window.onpopstate = function () {
+			window.history.replaceState(null, null, window.location.href);
+			window.location.replace("/");
+		};
+	}
+</script>
 
 <header class="header">
 	<div class="brand-box">
