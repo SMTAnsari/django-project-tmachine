@@ -8,8 +8,12 @@ from video.models import Feature
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.core.exceptions import ValidationError
 from django.core.mail import EmailMultiAlternatives
 import random
+
+
+
 def register(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -139,19 +143,74 @@ def otp(request,email):
 
     return render(request, "OTP_Template.html", context)
 
+def otpForgot(request,email):
+    print(email)
+    context = {
+        'email': email,
+    }
+    if request.method == 'POST':
+        a=request.POST['digit-1']
+        b=request.POST['digit-2']
+        c=request.POST['digit-3']
+        d=request.POST['digit-4']
+        otp=int(str(a)+str(b)+str(c)+str(d))
+        try:
+            user = Feature.objects.get(email=email)
+        except Feature.DoesNotExist:
+            messages.error(request, 'Invalid email')
+            return redirect('login')  # Redirect to the registration page or any other appropriate page
+        
+        # Check if the OTP matches
+        if user.otp == otp:
+            # OTP is valid, do something
+            messages.success(request, 'OTP is valid')
+            return redirect('reset', email=email)  # Redirect to a success page or any other appropriate page
+        else:
+            # OTP is invalid
+            messages.error(request, 'Invalid OTP')
+            return redirect('otpForgot', email=email)  # Redirect back to the OTP page with the email pre-filled
+    
+
+    return render(request, "OTP_Template.html", context)
+
 def forgot(request):
     if request.method == 'POST':
         email = request.POST['email']
-        # if Feature.objects.filter(email=email).exists():
-        #         a=otpGenerate()
-        #         subject = 'Registration Confirmation'
-        #         message = render_to_string('Email_Template.html', {'name': name,'otp':a})
-        #         from_email = 'maheshreddyqq@gmail.com'  # Replace with your Gmail email address
-        #         recipient_email = email
-        #         mail_sent(subject,message,from_email,recipient_email,True)
-        #         return redirect('OTP_Template')
+        if Feature.objects.filter(email=email).exists():
+            feature = Feature.objects.get(email=email)
+            name=feature.name
+            a,otp=otpGenerate()
+            subject = 'Registration Confirmation'
+            message = render_to_string('Email_Template.html', {'name': name,'otp':otp})
+            from_email = 'maheshreddyqq@gmail.com'  # Replace with your Gmail email address
+            recipient_email = email
+            mail_sent(subject,message,from_email,recipient_email,True)
+            Feature.objects.filter(email=email).update(otp=a)
+            return redirect('otpForgot', email=email)
 
-    return render(request,"forgot email template.html", {"email":email})
 
-def reset(request):
-    return render(request,"reset_password.html")
+
+    return render(request, "forgot email template.html")
+
+def reset(request,email):
+    print(email)
+    context = {
+        'email': email,
+    }
+    if request.method == 'POST':
+        password = request.POST['password']
+        password2 = request.POST['password1']
+        print(password2,password)
+        if password == password2:
+            try:
+                feature = Feature.objects.get(email=email)
+                feature.password = password
+                feature.save()
+                return redirect('login')
+            except Feature.DoesNotExist:
+                messages.error(request, 'Invalid email')
+                return redirect('reset', email=email)
+        else:
+            messages.error(request, 'Passwords do not match')
+            return redirect('reset', email=email)
+    return render(request,"reset_password.html", context)

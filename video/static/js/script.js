@@ -20,7 +20,7 @@ function playMusic(){
    playlist.classList.add('active')
 }
 function loadMusic(indexNumb){
-   mainVideo.src = `static/${allVideos[indexNumb - 1].src}.mp4`;
+   mainVideo.src = `static/video/${allVideos[indexNumb - 1].src}.mp4`;
    videoTitle.innerHTML = `${indexNumb}. ${allVideos[indexNumb - 1].name}`
    
    
@@ -31,7 +31,7 @@ for(let i = 0; i < allVideos.length; i++){
       <div class="row">
          <span>${i + 1}. ${allVideos[i].name}</span>
       </div>
-      <video class="${allVideos[i].id}" src="static/${allVideos[i].src}.mp4" style="display: none;" title="${allVideos[i].name}"></video>
+      <video class="${allVideos[i].id}" src="static/video/${allVideos[i].src}.mp4" style="display: none;" title="${allVideos[i].name}"></video>
       <span id="${allVideos[i].id}" class="duration"></span>
    </li>`;
    playlist.insertAdjacentHTML('beforeend',liTag); 

@@ -143,3 +143,4 @@ EMAIL_HOST_USER = 'maheshreddyqq@gmail.com'  # Replace with your Gmail email add
 EMAIL_HOST_PASSWORD = 'ldjknvliqkgvmznc'  # Replace with your Gmail password or an App Password
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+APPEND_SLASH = False
