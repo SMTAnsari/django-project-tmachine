@@ -134,6 +134,9 @@ def otp(request,email):
         if user.otp == otp:
             # OTP is valid, do something
             messages.success(request, 'OTP is valid')
+            feature = Feature.objects.get(email=email)
+            feature.otp = None
+            feature.save()
             return redirect('/Home')  # Redirect to a success page or any other appropriate page
         else:
             # OTP is invalid
@@ -164,6 +167,9 @@ def otpForgot(request,email):
         if user.otp == otp:
             # OTP is valid, do something
             messages.success(request, 'OTP is valid')
+            feature = Feature.objects.get(email=email)
+            feature.otp = None
+            feature.save()
             return redirect('reset', email=email)  # Redirect to a success page or any other appropriate page
         else:
             # OTP is invalid
